@@ -8,10 +8,10 @@ char mode = 'p';  // default mode: position servo
 void setup() {
   Serial.begin(9600);
 
-  //Setup Code for Part 1 (a)//
+// Attach position servo (Part 1a)
   myservo1.attach(11); // configure digital pin 11 to control the position servo
 
-  //Setup Code for Part 1 (b)//
+ // Attach rotation servo (Part 1b)
   myservo2.attach(9); // configure digital pin 9 to control the rotation servo
 
 Serial.println("Enter 'p' for position mode or 'r' for rotation mode.");
