@@ -3,6 +3,9 @@
 Servo myservo1;
 Servo myservo2;
 
+//new mode selector 
+Stiring mode = "";
+
 void setup() {
   Serial.begin(9600);
 
@@ -11,6 +14,9 @@ void setup() {
 
   //Setup Code for Part 1 (b)//
   myservo2.attach(9); // configure digital pin 9 to control the rotation servo
+
+//new prompt user
+Serial.printIn("Type 'pos' or 'rot' to select servo mode.");
 }
 
 void posServo() {
