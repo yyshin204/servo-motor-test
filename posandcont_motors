@@ -3,14 +3,18 @@
 Servo myservo1;
 Servo myservo2;
 
+char mode = 'p';  // default mode: position servo
+
 void setup() {
   Serial.begin(9600);
 
-  //Setup Code for Part 1 (a)//
+// Attach position servo (Part 1a)
   myservo1.attach(11); // configure digital pin 11 to control the position servo
 
-  //Setup Code for Part 1 (b)//
+ // Attach rotation servo (Part 1b)
   myservo2.attach(9); // configure digital pin 9 to control the rotation servo
+
+Serial.println("Enter 'p' for position mode or 'r' for rotation mode.");
 }
 
 void posServo() {
@@ -40,6 +44,20 @@ void rotServo() {
 }
 
 void loop() {
-  posServo();   // Comment this out if only testing rotServo
-  //rotServo(); // Comment this out if only testing posServo
+  // Check for new serial input to switch control mode
+  if (Serial.available()) {
+    char input = Serial.read();
+    if (input == 'p' || input == 'r') {
+      mode = input;
+      Serial.print("Mode set to: ");
+      Serial.println(mode);
+    }
+  }
+
+  // Run the selected servo control function
+  if (mode == 'p') {
+    posServo();
+  } else if (mode == 'r') {
+    rotServo();
+  }
 }
